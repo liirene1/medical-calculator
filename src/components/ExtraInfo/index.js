@@ -23,13 +23,14 @@ export class ExtraInfo extends Component {
             className="btn"
             onClick={() => this.handleClick(1)}
           >
-            When To Use<span> >> </span>
+            When To Use
+            <span> { selected === 1 ? 'up' : 'down'} </span>
           </div>
           <div
             className="btn"
             onClick={() => this.handleClick(2)}
           >
-            Pearls/Pitfalls<span> >> </span>
+            Pearls/Pitfalls<span> { selected === 2 ? 'up' : 'down'} </span>
           </div>
         </div>
         <div className="content">
@@ -50,12 +51,6 @@ export class ExtraInfo extends Component {
   }
 }
 
-function mapStateToProps(state) {
-  return {
-    extraInfo: state.extraInfo
-  };
-}
+const mapStateToProps = (state) => ({ extraInfo: state.extraInfo });
 
-export default connect(
-  mapStateToProps
-)(ExtraInfo);
+export default connect(mapStateToProps)(ExtraInfo);
