@@ -1,9 +1,11 @@
 import React from "react";
 import { connect } from "react-redux";
+import './index.css';
 
 const Results = ({ score, severity }) => (
-  <div>
-    Results: Score { score }, { severity }
+  <div className="results">
+    <h1>Result:</h1>
+    <p>Score { score }, { severity }</p>
   </div>
 );
 

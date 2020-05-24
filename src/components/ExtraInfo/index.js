@@ -20,29 +20,32 @@ export class ExtraInfo extends Component {
       <div className="extra-info">
         <div className="btn-row">
           <div
-            className="btn"
+            className={`btn ${selected === 1 ? 'selected' : ''}` }
             onClick={() => this.handleClick(1)}
           >
             When To Use
-            <span> { selected === 1 ? 'up' : 'down'} </span>
           </div>
           <div
-            className="btn"
+            className={`btn ${selected === 2 ? 'selected' : ''}` }
             onClick={() => this.handleClick(2)}
           >
-            Pearls/Pitfalls<span> { selected === 2 ? 'up' : 'down'} </span>
+            Pearls/Pitfalls
           </div>
         </div>
-        <div className="content">
+        <div className={selected === 0 ? 'empty' : 'content'}>
           {
             selected === 1 && extraInfo.whenToUse &&
-            <div>{extraInfo.whenToUse}</div>
+            <ul>
+              {extraInfo.whenToUse.map(condition =>
+                <li> {condition} </li>
+              )}
+            </ul>
           }
           {
             selected === 2 && extraInfo.pearlsPitfalls &&
             <div>
-              {extraInfo.pearlsPitfalls.title}
-              {extraInfo.pearlsPitfalls.text}
+              <div className="title"> {extraInfo.pearlsPitfalls.title} </div>
+              <div> {extraInfo.pearlsPitfalls.text} </div>
             </div>
           }
         </div>

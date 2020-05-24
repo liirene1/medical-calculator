@@ -1,0 +1,43 @@
+.patient-stats {
+  border-top: 1px solid #d7d7d7;
+}
+
+.input-row {
+  border-bottom: 1px solid #d7d7d7;
+  display: flex;
+}
+
+.label {
+  padding-right: 5px;
+  flex: 1 1;
+  align-items: center;
+  align-self: flex-start;
+  min-height: 44px;
+}
+
+.input-wrapper {
+  flex: 0 0 50%;
+  min-height: 41px;
+}
+
+.input-group {
+  display: flex;
+}
+
+input {
+  flex: 1 1 auto;
+  border-radius: 4px 0 0 4px;
+  width: 100%;
+}
+
+.units {
+  flex: 0 0 auto;
+  border-radius: 0 4px 4px 0;
+  height: 44px;
+  vertical-align: middle;
+  text-align: center;
+  background-color: #f0f0f0;
+  border: 1px solid #d7d7d7;
+  align-self: stretch;
+  padding: 0 10px;
+}

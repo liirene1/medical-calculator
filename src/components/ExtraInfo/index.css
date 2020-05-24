@@ -1,3 +1,51 @@
 .extra-info {
   width: 100%;
+  padding-bottom: 40px;
+}
+
+.btn-row {
+  display: flex;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  width: 100%;
+}
+
+.btn {
+  border: 1px solid silver;
+  flex: 1 1 50%;
+  text-align: center;
+  padding: 10px;
+}
+
+.btn:first-of-type {
+  border-top-left-radius: 4px;
+  border-bottom-left-radius: 4px;
+}
+
+.btn:last-of-type {
+  border-top-right-radius: 4px;
+  border-bottom-right-radius: 4px;
+}
+
+.btn.selected {
+  background-color: #1bb193;
+  font-weight: 600;
+  color: #fff;
+}
+
+.content {
+  background-color: #d7d7d7;
+  color: #595959;
+  padding: 11px 14px 8px;
+}
+
+ul {
+  padding-left: 20px;
+  margin: none;
+}
+
+.title {
+  font-weight: 700;
+  margin-top: 5px;
+  margin-bottom: 5px;
 }

@@ -25,29 +25,31 @@ export class PatientStats extends Component {
             <div className="btn">Male</div>
           </div>
         </div>
-        <div className="input-row">
-          <div> Age </div>
-          <div className="input-group">
-            <input />
-            <div className="units"> years </div>
+        <div className="input-wrapper">
+          <div className="input-row">
+            <div className="label"> Age </div>
+            <div className="input-group">
+              <input />
+              <div className="units"> years </div>
+            </div>
           </div>
         </div>
         <div className="input-row">
-          <div> Weight </div>
+          <div className="label"> Weight </div>
           <div className="input-group">
             <input />
             <div className="units"> kg </div>
           </div>
         </div>
         <div className="input-row">
-          <div> Creatinine </div>
+          <div className="label"> Creatinine </div>
           <div className="input-group">
             <input />
             <div className="units"> mg/dL </div>
           </div>
         </div>
         <div className="input-row">
-          <div> Height </div>
+          <div className="label"> Height </div>
           <div className="input-group">
             <input />
             <div className="units"> cm </div>
