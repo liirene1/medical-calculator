@@ -6,53 +6,75 @@ export class PatientStats extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      // selected: 0
+      selected: 0
     };
-    // this.handleClick = this.handleClick.bind(this);
+    this.handleClick = this.handleClick.bind(this);
+  }
+
+  handleClick(tab) {
+    this.setState({ selected: tab });
   }
 
   //componentWillMount(){ //grab patient info from API }
 
   render() {
     // const { extraInfo } = this.props;
-    // const { selected } = this.state;
+    const { selected } = this.state;
     return (
       <div className="patient-stats">
         <div className="input-row">
-          <div> Sex </div>
-          <div className="btn-row">
-            <div className="btn">Female</div>
-            <div className="btn">Male</div>
+          <div className="label"> Sex </div>
+          <div className="input-wrapper">
+            <div className="btn-row">
+              <div
+                className={`btn ${selected === 1 ? 'selected' : ''}` }
+                onClick={() => this.handleClick(1)}
+              >Female</div>
+              <div
+                className={`btn ${selected === 2 ? 'selected' : ''}` }
+                onClick={() => this.handleClick(2)}
+              >Male</div>
+            </div>
           </div>
         </div>
-        <div className="input-wrapper">
-          <div className="input-row">
-            <div className="label"> Age </div>
+
+        <div className="input-row">
+          <div className="label"> Age </div>
+          <div className="input-wrapper">
             <div className="input-group">
               <input />
               <div className="units"> years </div>
             </div>
           </div>
         </div>
+
         <div className="input-row">
           <div className="label"> Weight </div>
-          <div className="input-group">
-            <input />
-            <div className="units"> kg </div>
+          <div className="input-wrapper">
+            <div className="input-group">
+              <input />
+              <div className="units"> kg </div>
+            </div>
           </div>
         </div>
+
         <div className="input-row">
           <div className="label"> Creatinine </div>
-          <div className="input-group">
-            <input />
-            <div className="units"> mg/dL </div>
+          <div className="input-wrapper">
+            <div className="input-group">
+              <input />
+              <div className="units"> mg/dL </div>
+            </div>
           </div>
         </div>
+
         <div className="input-row">
           <div className="label"> Height </div>
-          <div className="input-group">
-            <input />
-            <div className="units"> cm </div>
+          <div className="input-wrapper">
+            <div className="input-group">
+              <input />
+              <div className="units"> cm </div>
+            </div>
           </div>
         </div>
       </div>
