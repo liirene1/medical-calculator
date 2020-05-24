@@ -51,6 +51,6 @@ export class ExtraInfo extends Component {
   }
 }
 
-const mapStateToProps = (state) => ({ extraInfo: state.extraInfo });
+const mapStateToProps = state => ({ extraInfo: state.extraInfo });
 
 export default connect(mapStateToProps)(ExtraInfo);
