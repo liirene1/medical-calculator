@@ -6,20 +6,24 @@ export class PatientStats extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      selected: 0
+      sexSelected: 0,
+      age: null,
+      weight: null,
+      height: null,
+      creatinine: null
     };
     this.handleClick = this.handleClick.bind(this);
   }
 
   handleClick(tab) {
-    this.setState({ selected: tab });
+    this.setState({ sexSelected: tab });
   }
 
   //componentWillMount(){ //grab patient info from API }
 
   render() {
     // const { extraInfo } = this.props;
-    const { selected } = this.state;
+    const { sexSelected } = this.state;
     return (
       <div className="patient-stats">
         <div className="input-row">
@@ -27,11 +31,11 @@ export class PatientStats extends Component {
           <div className="input-wrapper">
             <div className="btn-row">
               <div
-                className={`btn ${selected === 1 ? 'selected' : ''}` }
+                className={`btn ${sexSelected === 1 ? 'selected' : ''}` }
                 onClick={() => this.handleClick(1)}
               >Female</div>
               <div
-                className={`btn ${selected === 2 ? 'selected' : ''}` }
+                className={`btn ${sexSelected === 2 ? 'selected' : ''}` }
                 onClick={() => this.handleClick(2)}
               >Male</div>
             </div>
@@ -42,7 +46,7 @@ export class PatientStats extends Component {
           <div className="label"> Age </div>
           <div className="input-wrapper">
             <div className="input-group">
-              <input />
+              <input type="number"/>
               <div className="units"> years </div>
             </div>
           </div>
@@ -52,7 +56,7 @@ export class PatientStats extends Component {
           <div className="label"> Weight </div>
           <div className="input-wrapper">
             <div className="input-group">
-              <input />
+              <input type="number"/>
               <div className="units"> kg </div>
             </div>
           </div>
@@ -62,7 +66,7 @@ export class PatientStats extends Component {
           <div className="label"> Creatinine </div>
           <div className="input-wrapper">
             <div className="input-group">
-              <input />
+              <input type="number"/>
               <div className="units"> mg/dL </div>
             </div>
           </div>
@@ -72,7 +76,7 @@ export class PatientStats extends Component {
           <div className="label"> Height </div>
           <div className="input-wrapper">
             <div className="input-group">
-              <input />
+              <input type="number"/>
               <div className="units"> cm </div>
             </div>
           </div>

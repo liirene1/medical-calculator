@@ -1,4 +1,4 @@
-// import * as extraInfoData from '../constants/extraInfo.json';
+// import extraInfoData from '../constants/extraInfo.json';
 const extraInfoData = {
   "whenToUse" : [
     "Assessing a patient’s renal function",
@@ -6,14 +6,16 @@ const extraInfoData = {
   ],
   "pearlsPitfalls": {
     "title": "From Dan Brown, PharmD, at Palm Beach Atlantic University, the primary author of the functional range of creatinine clearance paper",
-    "text": "The Cockcroft-Gault equation remains the gold standard after almost 40 years, despite inaccuracies that arise from variations in body composition among patients. Those who understand potential sources of error can adjust accordingly."
+    "text": "“The Cockcroft-Gault equation remains the gold standard after almost 40 years, despite inaccuracies that arise from variations in body composition among patients. Those who understand potential sources of error can adjust accordingly.”"
   }
 }
+
+const sampleResult = { "score": 5, "severity": "high"};
 
 const initialState = {
   extraInfo: extraInfoData,
   patientInfo: {},
-  result: {}
+  result: sampleResult
 };
 
 function rootReducer(state = initialState, action) {

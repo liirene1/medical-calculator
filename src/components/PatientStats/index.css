@@ -12,12 +12,11 @@
 .label {
   padding-right: 5px;
   flex: 1 1 50%;
-  min-height: 44px;
+  align-self: center;
 }
 
 .input-wrapper {
   flex: 1 1 50%;
-  min-height: 41px;
 }
 
 .input-group {
@@ -30,14 +29,17 @@ input {
   width: 100%;
 }
 
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
 .units {
   flex: 0 0 auto;
   border-radius: 0 4px 4px 0;
-  height: 44px;
-  vertical-align: middle;
-  text-align: center;
   background-color: #f0f0f0;
   border: 1px solid #d7d7d7;
-  align-self: stretch;
-  padding: 0 10px;
+  align-self: center;
+  padding: 10px;
 }
