@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import ButtonTab from "../ButtonTab";
 import { calculate, determineSeverity } from "../../utils/calculate";
+import { getAgeSex, getWeight, getHeight } from "../../actions/patientStats";
+import { updateResult } from "../../actions/result";
 import './index.css';
 
 export class PatientStats extends Component {
@@ -19,7 +21,12 @@ export class PatientStats extends Component {
     this.handleCalculation = this.handleCalculation.bind(this);
   }
 
-  //componentWillMount(){ //grab patient info from API }
+  componentWillMount() {
+    const { getAgeSex, getWeight, getHeight } = this.props;
+    getAgeSex();
+    getWeight();
+    getHeight();
+  }
 
   handleClick(tab) {
     this.setState({ sexSelected: tab });
@@ -39,7 +46,7 @@ export class PatientStats extends Component {
     const score = calculate(sexSelected, age, weight, height, creatinine);
     const severity = determineSeverity(score);
     console.log(severity);
-    //dispatch (score, severity) to state
+    this.props.updateResult(score, severity);
   }
 
   render() {
@@ -135,10 +142,11 @@ export class PatientStats extends Component {
   }
 }
 
-//const mapStateToProps = (state) => ({ extraInfo: state.extraInfo });
+const mapStateToProps = (state) => ({ patientInfo: state.patientInfo });
 //const mapDispatchToProps
 
 export default connect(
-  // mapStateToProps,
+  mapStateToProps,
+  { getAgeSex, getWeight, getHeight, updateResult }
   // mapDispatchToProps
 )(PatientStats);

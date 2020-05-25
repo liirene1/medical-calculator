@@ -1,7 +1,7 @@
 import React from 'react';
 import ExtraInfo from './components/ExtraInfo';
 import PatientStats from './components/PatientStats';
-import Results from './components/Results';
+import Result from './components/Result';
 import './App.css';
 
 function App() {
@@ -11,7 +11,7 @@ function App() {
       <h5>Calculates CrCl according to the Cockcroft-Gault equation.</h5>
       <ExtraInfo />
       <PatientStats />
-      <Results />
+      <Result />
     </div>
   );
 }

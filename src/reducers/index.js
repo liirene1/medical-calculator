@@ -10,15 +10,29 @@ const extraInfoData = {
   }
 }
 
-const sampleResult = { "score": 5, "severity": "high"};
-
 const initialState = {
   extraInfo: extraInfoData,
   patientInfo: {},
-  result: sampleResult
+  result: {}
 };
 
 function rootReducer(state = initialState, action) {
+  if (action.type === "AUTOFILL_WEIGHT") {
+    console.log("reducer", action.payload);
+    return {
+      ...state,
+      patientInfo: {
+        ...state.patientInfo,
+        weight: action.payload
+      }
+    };
+  }
+  if (action.type === "UPDATE_RESULT") {
+    return {
+      ...state,
+      result: action.result
+    };
+  }
   return state;
 };
 

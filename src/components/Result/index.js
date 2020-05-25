@@ -2,12 +2,12 @@ import React from "react";
 import { connect } from "react-redux";
 import './index.css';
 
-const Results = ({ result }) => {
+const Result = ({ result }) => {
   const { score, severity } = result;
   if (!score) return null;
 
   return (
-    <div className="results">
+    <div className="result">
       <h1>Result:</h1>
       <p>Score: { score }, Severity: { severity }</p>
     </div>
@@ -15,4 +15,4 @@ const Results = ({ result }) => {
 }
 
 const mapStateToProps = state => ({ result: state.result });
-export default connect(mapStateToProps)(Results);
+export default connect(mapStateToProps)(Result);
