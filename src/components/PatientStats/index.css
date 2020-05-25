@@ -27,6 +27,9 @@ input {
   flex: 1 1 auto;
   border-radius: 4px 0 0 4px;
   width: 100%;
+  font-size: 16px;
+  color: #595959;
+  padding: 10px;
 }
 
 input::-webkit-outer-spin-button,
@@ -42,4 +45,26 @@ input::-webkit-inner-spin-button {
   border: 1px solid #d7d7d7;
   align-self: center;
   padding: 10px;
+}
+
+.btn-row {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.calculate-btn {
+  width: 300px;
+  text-align: center;
+  border: 1px solid silver;
+  border-radius: 4px;
+  background-color: #117d67;
+  color: #fff;
+  padding: 10px;
+  margin: auto;
+  cursor: pointer;
+}
+
+.disabled {
+  background-color: #d7d7d7;
+  cursor: default;
 }

@@ -1,30 +1,51 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import ButtonTab from "../ButtonTab";
+import { calculate, determineSeverity } from "../../utils/calculate";
 import './index.css';
 
 export class PatientStats extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      sexSelected: null,
-      age: null,
-      weight: null,
-      height: null,
-      creatinine: null
+      sexSelected: undefined,
+      age: undefined,
+      weight: undefined,
+      height: undefined,
+      creatinine: undefined
     };
     this.handleClick = this.handleClick.bind(this);
+    this.handleInputChange = this.handleInputChange.bind(this);
+    this.handleCalculation = this.handleCalculation.bind(this);
   }
+
+  //componentWillMount(){ //grab patient info from API }
 
   handleClick(tab) {
     this.setState({ sexSelected: tab });
   }
 
-  //componentWillMount(){ //grab patient info from API }
+  handleInputChange(field, newValue) {
+    // console.log("handleInputChange", field, newValue);
+    // const validNumber = new RegExp(/^\d*\.?\d*$/);
+    // console.log(newValue, validNumber.test(newValue));
+    // if (field === "sexSelected" || (field !== "sexSelected" && validNumber.test(newValue))) {
+      this.setState({ [field]: newValue });
+    // }
+  }
+
+  handleCalculation() {
+    const { sexSelected, age, weight, height, creatinine } = this.state;
+    const score = calculate(sexSelected, age, weight, height, creatinine);
+    const severity = determineSeverity(score);
+    console.log(severity);
+    //dispatch (score, severity) to state
+  }
 
   render() {
     // const { extraInfo } = this.props;
-    const { sexSelected } = this.state;
+    const { sexSelected, age, weight, height, creatinine } = this.state;
+    const isDisabled = !sexSelected || !age || !weight || !creatinine || !height;
     return (
       <div className="patient-stats">
         <div className="input-row">
@@ -49,7 +70,11 @@ export class PatientStats extends Component {
           <div className="label"> Age </div>
           <div className="input-wrapper">
             <div className="input-group">
-              <input type="number"/>
+              <input
+                type="number"
+                value={age}
+                onChange={e => this.handleInputChange("age", e.target.value)}
+              />
               <div className="units"> years </div>
             </div>
           </div>
@@ -59,7 +84,11 @@ export class PatientStats extends Component {
           <div className="label"> Weight </div>
           <div className="input-wrapper">
             <div className="input-group">
-              <input type="number"/>
+              <input
+                type="number"
+                value={weight}
+                onChange={e => this.handleInputChange("weight", e.target.value)}
+              />
               <div className="units"> kg </div>
             </div>
           </div>
@@ -69,7 +98,11 @@ export class PatientStats extends Component {
           <div className="label"> Creatinine </div>
           <div className="input-wrapper">
             <div className="input-group">
-              <input type="number"/>
+              <input
+                type="number"
+                value={creatinine}
+                onChange={e => this.handleInputChange("creatinine", e.target.value)}
+              />
               <div className="units"> mg/dL </div>
             </div>
           </div>
@@ -79,19 +112,30 @@ export class PatientStats extends Component {
           <div className="label"> Height </div>
           <div className="input-wrapper">
             <div className="input-group">
-              <input type="number"/>
+              <input
+                type="number"
+                value={height}
+                onChange={e => this.handleInputChange("height", e.target.value)}
+              />
               <div className="units"> cm </div>
             </div>
           </div>
         </div>
 
-        <div className="calculate-btn">Calculate</div>
+        <div className="btn-row">
+          <div
+            className={`calculate-btn ${isDisabled ? 'disabled' : ''}`}
+            onClick={() => this.handleCalculation()}
+          >
+            Calculate
+          </div>
+        </div>
       </div>
     );
   }
 }
 
-// const mapStateToProps = (state) => ({ extraInfo: state.extraInfo });
+//const mapStateToProps = (state) => ({ extraInfo: state.extraInfo });
 //const mapDispatchToProps
 
 export default connect(

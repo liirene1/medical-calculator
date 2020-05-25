@@ -9,7 +9,7 @@ const Results = ({ result }) => {
   return (
     <div className="results">
       <h1>Result:</h1>
-      <p>Score { score }, { severity }</p>
+      <p>Score: { score }, Severity: { severity }</p>
     </div>
   );
 }
