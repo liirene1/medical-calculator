@@ -2,6 +2,11 @@
   border-top: 1px solid #d7d7d7;
 }
 
+.btn-row {
+  margin-top: 20px;
+  text-align: center;
+}
+
 .input-row {
   border-bottom: 1px solid #d7d7d7;
   display: flex;
@@ -17,39 +22,6 @@
 
 .input-wrapper {
   flex: 1 1 50%;
-}
-
-.input-group {
-  display: flex;
-}
-
-input {
-  flex: 1 1 auto;
-  border-radius: 4px 0 0 4px;
-  width: 100%;
-  font-size: 16px;
-  color: #595959;
-  padding: 10px;
-}
-
-input::-webkit-outer-spin-button,
-input::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
-}
-
-.units {
-  flex: 0 0 auto;
-  border-radius: 0 4px 4px 0;
-  background-color: #f0f0f0;
-  border: 1px solid #d7d7d7;
-  align-self: center;
-  padding: 10px;
-}
-
-.btn-row {
-  margin-top: 20px;
-  text-align: center;
 }
 
 .calculate-btn {

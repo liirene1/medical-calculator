@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import ButtonTab from "../ButtonTab";
+import InputRow from "../InputRow";
 import { calculate, determineSeverity } from "../../utils/calculate";
 import { getAgeSex, getWeight, getHeight } from "../../actions/patientStats";
 import { updateResult } from "../../actions/result";
@@ -9,12 +10,14 @@ import './index.css';
 export class PatientStats extends Component {
   constructor(props) {
     super(props);
+
+    const { sex, age, weight, height, creatinine } = props.patientInfo;
     this.state = {
-      sexSelected: undefined,
-      age: undefined,
-      weight: undefined,
-      height: undefined,
-      creatinine: undefined
+      sexSelected: sex || '',
+      age: age || '',
+      weight: weight || '',
+      height: height || '',
+      creatinine: creatinine || ''
     };
     this.handleClick = this.handleClick.bind(this);
     this.handleInputChange = this.handleInputChange.bind(this);
@@ -45,12 +48,10 @@ export class PatientStats extends Component {
     const { sexSelected, age, weight, height, creatinine } = this.state;
     const score = calculate(sexSelected, age, weight, height, creatinine);
     const severity = determineSeverity(score);
-    console.log(severity);
     this.props.updateResult(score, severity);
   }
 
   render() {
-    // const { extraInfo } = this.props;
     const { sexSelected, age, weight, height, creatinine } = this.state;
     const isDisabled = !sexSelected || !age || !weight || !creatinine || !height;
     return (
@@ -73,61 +74,33 @@ export class PatientStats extends Component {
           </div>
         </div>
 
-        <div className="input-row">
-          <div className="label"> Age </div>
-          <div className="input-wrapper">
-            <div className="input-group">
-              <input
-                type="number"
-                value={age}
-                onChange={e => this.handleInputChange("age", e.target.value)}
-              />
-              <div className="units"> years </div>
-            </div>
-          </div>
-        </div>
+        <InputRow
+          label="Age"
+          value={age}
+          handleChange={e => this.handleInputChange("age", e.target.value)}
+          units="years"
+        />
 
-        <div className="input-row">
-          <div className="label"> Weight </div>
-          <div className="input-wrapper">
-            <div className="input-group">
-              <input
-                type="number"
-                value={weight}
-                onChange={e => this.handleInputChange("weight", e.target.value)}
-              />
-              <div className="units"> kg </div>
-            </div>
-          </div>
-        </div>
+        <InputRow
+          label="Weight"
+          value={weight}
+          handleChange={e => this.handleInputChange("weight", e.target.value)}
+          units="kg"
+        />
 
-        <div className="input-row">
-          <div className="label"> Creatinine </div>
-          <div className="input-wrapper">
-            <div className="input-group">
-              <input
-                type="number"
-                value={creatinine}
-                onChange={e => this.handleInputChange("creatinine", e.target.value)}
-              />
-              <div className="units"> mg/dL </div>
-            </div>
-          </div>
-        </div>
+        <InputRow
+          label="Creatinine"
+          value={creatinine}
+          handleChange={e => this.handleInputChange("creatinine", e.target.value)}
+          units="mg/dL"
+        />
 
-        <div className="input-row">
-          <div className="label"> Height </div>
-          <div className="input-wrapper">
-            <div className="input-group">
-              <input
-                type="number"
-                value={height}
-                onChange={e => this.handleInputChange("height", e.target.value)}
-              />
-              <div className="units"> cm </div>
-            </div>
-          </div>
-        </div>
+        <InputRow
+          label="Height"
+          value={height}
+          handleChange={e => this.handleInputChange("height", e.target.value)}
+          units="cm"
+        />
 
         <div className="btn-row">
           <div

@@ -3,6 +3,7 @@
   flex: 1 1 50%;
   text-align: center;
   padding: 10px;
+  cursor: pointer;
 }
 
 .btn:first-of-type {
