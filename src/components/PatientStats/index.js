@@ -24,11 +24,11 @@ export class PatientStats extends Component {
     this.handleCalculation = this.handleCalculation.bind(this);
   }
 
-  componentWillMount() {
-    const { getAgeSex, getWeight, getHeight } = this.props;
-    getAgeSex();
-    getWeight();
-    getHeight();
+  componentDidMount() {
+    // const { getAgeSex, getWeight, getHeight } = this.props;
+    this.props.getAgeSex();
+    // this.props.getWeight();
+    // getHeight();
   }
 
   handleClick(tab) {

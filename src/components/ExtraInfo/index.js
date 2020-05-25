@@ -3,23 +3,31 @@ import { connect } from "react-redux";
 import ButtonTab from "../ButtonTab";
 import './index.css';
 
-const ExtraInfo = ({ extraInfo }) => {
+export const ExtraInfo = ({ extraInfo }) => {
   const [selected, setSelected] = useState(0);
-  if (!extraInfo) return null;
+  const { whenToUse, pearlsPitfalls } = extraInfo;
+  if (!whenToUse || !pearlsPitfalls) return null;
 
   return (
     <div className="extra-info">
       <div className="btn-row">
-        <ButtonTab
-          isSelected={selected === 1}
-          handleClick={() => setSelected(1)}
-          label="When To Use"
-        />
-        <ButtonTab
-          isSelected={selected === 2}
-          handleClick={() => setSelected(2)}
-          label="Pearls/Pitfalls"
-        />
+        {
+          extraInfo.whenToUse &&
+          <ButtonTab
+            isSelected={selected === 1}
+            handleClick={() => setSelected(1)}
+            label="When To Use"
+          />
+        }
+        {
+          extraInfo.pearlsPitfalls &&
+          <ButtonTab
+            isSelected={selected === 2}
+            handleClick={() => setSelected(2)}
+            label="Pearls/Pitfalls"
+          />
+        }
+
       </div>
 
       <div className={selected === 0 ? 'empty' : 'content'}>

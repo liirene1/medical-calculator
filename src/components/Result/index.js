@@ -2,7 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import './index.css';
 
-const Result = ({ result }) => {
+export const Result = ({ result }) => {
   const { score, severity } = result;
   if (!score) return null;
 
