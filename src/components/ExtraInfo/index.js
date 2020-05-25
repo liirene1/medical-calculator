@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
+import ButtonTab from "../ButtonTab";
 import './index.css';
 
 const ExtraInfo = ({ extraInfo }) => {
@@ -9,25 +10,24 @@ const ExtraInfo = ({ extraInfo }) => {
   return (
     <div className="extra-info">
       <div className="btn-row">
-        <div
-          className={`btn ${selected === 1 ? 'selected' : ''}` }
-          onClick={() => setSelected(1)}
-        >
-          When To Use
-        </div>
-        <div
-          className={`btn ${selected === 2 ? 'selected' : ''}` }
-          onClick={() => setSelected(2)}
-        >
-          Pearls/Pitfalls
-        </div>
-       </div>
-       <div className={selected === 0 ? 'empty' : 'content'}>
+        <ButtonTab
+          isSelected={selected === 1}
+          handleClick={() => setSelected(1)}
+          label="When To Use"
+        />
+        <ButtonTab
+          isSelected={selected === 2}
+          handleClick={() => setSelected(2)}
+          label="Pearls/Pitfalls"
+        />
+      </div>
+
+      <div className={selected === 0 ? 'empty' : 'content'}>
         {
           selected === 1 && extraInfo.whenToUse &&
           <ul>
-            {extraInfo.whenToUse.map(condition =>
-              <li> {condition} </li>
+            {extraInfo.whenToUse.map((condition, index) =>
+              <li key={index}> {condition} </li>
             )}
           </ul>
         }
@@ -40,7 +40,7 @@ const ExtraInfo = ({ extraInfo }) => {
         }
       </div>
     </div>
-  )
+  );
 }
 
 const mapStateToProps = state => ({ extraInfo: state.extraInfo });

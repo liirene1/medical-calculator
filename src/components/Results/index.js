@@ -5,7 +5,7 @@ import './index.css';
 const Results = ({ result }) => {
   const { score, severity } = result;
   if (!score) return null;
-  
+
   return (
     <div className="results">
       <h1>Result:</h1>

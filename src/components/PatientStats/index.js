@@ -1,12 +1,13 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import ButtonTab from "../ButtonTab";
 import './index.css';
 
 export class PatientStats extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      sexSelected: 0,
+      sexSelected: null,
       age: null,
       weight: null,
       height: null,
@@ -30,14 +31,16 @@ export class PatientStats extends Component {
           <div className="label"> Sex </div>
           <div className="input-wrapper">
             <div className="btn-row">
-              <div
-                className={`btn ${sexSelected === 1 ? 'selected' : ''}` }
-                onClick={() => this.handleClick(1)}
-              >Female</div>
-              <div
-                className={`btn ${sexSelected === 2 ? 'selected' : ''}` }
-                onClick={() => this.handleClick(2)}
-              >Male</div>
+              <ButtonTab
+                label="Female"
+                isSelected={sexSelected === "F"}
+                handleClick={() => this.handleClick("F")}
+              />
+              <ButtonTab
+                label="Male"
+                isSelected={sexSelected === "M"}
+                handleClick={() => this.handleClick("M")}
+              />
             </div>
           </div>
         </div>
@@ -81,6 +84,8 @@ export class PatientStats extends Component {
             </div>
           </div>
         </div>
+
+        <div className="calculate-btn">Calculate</div>
       </div>
     );
   }
