@@ -1,7 +1,7 @@
+import moment from 'moment';
+
 export function calculateAge(birthday) {
-  var ageDiff = Date.now() - birthday;
-  var ageDate = new Date(ageDiff);
-  return Math.abs(ageDate.getUTCFullYear() - 1970);
+  return moment().diff(moment(birthday), 'years');
 }
 
 export function parseXML(xmlText, target) {
