@@ -1,6 +1,6 @@
 export function calculate(sex, age, weight, creatinine, height) {
     let score = 0;
-    if (sex === "M") score += 1;
+    if (sex === "male") score += 1;
     if (age > 40) score += 1;
     if (weight > 60) score += 1;
     if (creatinine > .7) score+= 1;

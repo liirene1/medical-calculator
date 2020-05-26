@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import { bindActionCreators } from 'redux'
 import ButtonTab from "../ButtonTab";
 import InputRow from "../InputRow";
 import { calculate, determineSeverity } from "../../utils/calculate";
@@ -13,7 +14,7 @@ export class PatientStats extends Component {
 
     const { sex, age, weight, height, creatinine } = props.patientInfo;
     this.state = {
-      sexSelected: sex || '',
+      sex: sex || '',
       age: age || '',
       weight: weight || '',
       height: height || '',
@@ -25,35 +26,40 @@ export class PatientStats extends Component {
   }
 
   componentDidMount() {
-    // const { getAgeSex, getWeight, getHeight } = this.props;
-    this.props.getAgeSex();
-    // this.props.getWeight();
+    const { getAgeSex, getWeight } = this.props; //getHeight
+    getAgeSex();
+    getWeight();
     // getHeight();
   }
 
+  componentDidUpdate(prevProps) {
+    const { patientInfo } = this.props;
+    if(patientInfo !== prevProps.patientInfo) {
+      console.log("update", patientInfo, prevProps.patientInfo);
+      Object.keys(patientInfo).map(key => this.setState({ [key]: patientInfo[key] }));
+
+    }
+  }
+
   handleClick(tab) {
-    this.setState({ sexSelected: tab });
+    this.setState({ sex: tab });
   }
 
   handleInputChange(field, newValue) {
-    // console.log("handleInputChange", field, newValue);
-    // const validNumber = new RegExp(/^\d*\.?\d*$/);
-    // console.log(newValue, validNumber.test(newValue));
-    // if (field === "sexSelected" || (field !== "sexSelected" && validNumber.test(newValue))) {
-      this.setState({ [field]: newValue });
-    // }
+    this.setState({ [field]: newValue });
   }
 
   handleCalculation() {
-    const { sexSelected, age, weight, height, creatinine } = this.state;
-    const score = calculate(sexSelected, age, weight, height, creatinine);
+    const { sex, age, weight, height, creatinine } = this.state;
+    const score = calculate(sex, age, weight, height, creatinine);
     const severity = determineSeverity(score);
     this.props.updateResult(score, severity);
   }
 
   render() {
-    const { sexSelected, age, weight, height, creatinine } = this.state;
-    const isDisabled = !sexSelected || !age || !weight || !creatinine || !height;
+    const { sex, age, weight, height, creatinine } = this.state;
+    console.log("this.state", this.state);
+    const isDisabled = !sex || !age || !weight || !creatinine || !height;
     return (
       <div className="patient-stats">
         <div className="input-row">
@@ -62,13 +68,13 @@ export class PatientStats extends Component {
             <div className="btn-row">
               <ButtonTab
                 label="Female"
-                isSelected={sexSelected === "F"}
-                handleClick={() => this.handleClick("F")}
+                isSelected={sex === "female"}
+                handleClick={() => this.handleClick("female")}
               />
               <ButtonTab
                 label="Male"
-                isSelected={sexSelected === "M"}
-                handleClick={() => this.handleClick("M")}
+                isSelected={sex === "male"}
+                handleClick={() => this.handleClick("male")}
               />
             </div>
           </div>
@@ -115,11 +121,12 @@ export class PatientStats extends Component {
   }
 }
 
-const mapStateToProps = (state) => ({ patientInfo: state.patientInfo });
-//const mapDispatchToProps
+const mapStateToProps = state => ({ patientInfo: state.patientInfo });
+const mapDispatchToProps = dispatch => (
+  bindActionCreators({ getAgeSex, getWeight, getHeight, updateResult }, dispatch)
+);
 
 export default connect(
   mapStateToProps,
-  { getAgeSex, getWeight, getHeight, updateResult }
-  // mapDispatchToProps
+  mapDispatchToProps
 )(PatientStats);

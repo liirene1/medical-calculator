@@ -17,6 +17,16 @@ const initialState = {
 };
 
 function rootReducer(state = initialState, action) {
+  if (action.type === "AUTOFILL_AGE_SEX") {
+    return {
+      ...state,
+      patientInfo: {
+        ...state.patientInfo,
+        age: action.age,
+        sex: action.sex
+      }
+    };
+  }
   if (action.type === "AUTOFILL_WEIGHT") {
     console.log("reducer", action.payload);
     return {
