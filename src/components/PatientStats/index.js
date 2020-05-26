@@ -26,18 +26,16 @@ export class PatientStats extends Component {
   }
 
   componentDidMount() {
-    const { getAgeSex, getWeight } = this.props; //getHeight
+    const { getAgeSex, getWeight, getHeight } = this.props;
     getAgeSex();
     getWeight();
-    // getHeight();
+    getHeight();
   }
 
   componentDidUpdate(prevProps) {
     const { patientInfo } = this.props;
     if(patientInfo !== prevProps.patientInfo) {
-      console.log("update", patientInfo, prevProps.patientInfo);
       Object.keys(patientInfo).map(key => this.setState({ [key]: patientInfo[key] }));
-
     }
   }
 
@@ -58,7 +56,6 @@ export class PatientStats extends Component {
 
   render() {
     const { sex, age, weight, height, creatinine } = this.state;
-    console.log("this.state", this.state);
     const isDisabled = !sex || !age || !weight || !creatinine || !height;
     return (
       <div className="patient-stats">

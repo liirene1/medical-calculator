@@ -28,12 +28,21 @@ function rootReducer(state = initialState, action) {
     };
   }
   if (action.type === "AUTOFILL_WEIGHT") {
-    console.log("reducer", action.payload);
     return {
       ...state,
       patientInfo: {
         ...state.patientInfo,
-        weight: action.payload
+        weight: action.weight
+      }
+    };
+  }
+  if (action.type === "AUTOFILL_HEIGHT") {
+    console.log(action);
+    return {
+      ...state,
+      patientInfo: {
+        ...state.patientInfo,
+        height: action.height
       }
     };
   }
