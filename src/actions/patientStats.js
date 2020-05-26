@@ -13,7 +13,9 @@ export function getAgeSex() {
         const birthDateObject = new Date(birthDate);
         age = calculateAge(birthDateObject)
       }
-      dispatch({ type: "AUTOFILL_AGE_SEX", age, sex });
+      if (age || sex) {
+        dispatch({ type: "AUTOFILL_AGE_SEX", age, sex });
+      }
     });
   }
 }
@@ -24,7 +26,9 @@ export function getWeight() {
       .then(response => response.text())
       .then(text => {
         let weight = parseXML(text, "value");
-        dispatch({ type: "AUTOFILL_WEIGHT", weight });
+        if (weight) {
+          dispatch({ type: "AUTOFILL_WEIGHT", weight });
+        }
       });
   };
 }
@@ -35,7 +39,9 @@ export function getHeight() {
     .then(response => response.text())
     .then(text => {
       let height = parseXML(text, "value");
-      dispatch({ type: "AUTOFILL_HEIGHT", height });
+      if (height) {
+        dispatch({ type: "AUTOFILL_HEIGHT", height });
+      }
     });
   };
 }

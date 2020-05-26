@@ -2,16 +2,15 @@
   border-top: 1px solid #d7d7d7;
 }
 
-.btn-row {
-  margin-top: 20px;
+.input-wrapper .btn-row {
+  margin: 0;
   text-align: center;
 }
 
 .input-row {
   border-bottom: 1px solid #d7d7d7;
   display: flex;
-  padding-top: 8px;
-  padding-bottom: 8px;
+  padding: 8px 0;
 }
 
 .label {

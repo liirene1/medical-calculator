@@ -1,6 +1,6 @@
 export function calculateAge(birthday) {
-  var ageDifMs = Date.now() - birthday;
-  var ageDate = new Date(ageDifMs);
+  var ageDiff = Date.now() - birthday;
+  var ageDate = new Date(ageDiff);
   return Math.abs(ageDate.getUTCFullYear() - 1970);
 }
 

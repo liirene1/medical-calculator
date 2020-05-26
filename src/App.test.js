@@ -7,15 +7,3 @@ describe("App", () => {
     shallow(<App />);
   });
 });
-
-// it('App renders extraInfo', () => {
-//   const app = render(
-//     <Provider store={store}>
-//       <App />
-//     </Provider>
-//   );
-//   const extraInfoSection = <div class="extra-info"/>;
-//   expect(app).toContainHTML(extraInfoSection);
-// });
-
-//renders PatientsStats form
