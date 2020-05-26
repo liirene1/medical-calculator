@@ -5,7 +5,7 @@ import './index.css';
 export const Result = () => {
   const { result } = useSelector(state => ({ result: state.result }));
   const { score, severity } = result;
-  if (!result || !score) return null;
+  if (!result || !severity) return null;
 
   return (
     <div className="result">

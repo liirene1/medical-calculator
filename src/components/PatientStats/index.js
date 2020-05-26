@@ -12,16 +12,14 @@ export class PatientStats extends Component {
   constructor(props) {
     super(props);
 
-    const { sex, age, weight, height, creatinine } = props.patientInfo;
     this.state = {
-      sex: sex || '',
-      age: age || '',
-      weight: weight || '',
-      height: height || '',
-      creatinine: creatinine || ''
+      sex: undefined,
+      age: undefined,
+      weight: undefined,
+      height: undefined,
+      creatinine: undefined
     };
-    this.handleClick = this.handleClick.bind(this);
-    this.handleInputChange = this.handleInputChange.bind(this);
+    this.handleChange = this.handleChange.bind(this);
     this.handleCalculation = this.handleCalculation.bind(this);
   }
 
@@ -39,11 +37,7 @@ export class PatientStats extends Component {
     }
   }
 
-  handleClick(tab) {
-    this.setState({ sex: tab });
-  }
-
-  handleInputChange(field, newValue) {
+  handleChange(field, newValue) {
     this.setState({ [field]: newValue });
   }
 
@@ -66,12 +60,12 @@ export class PatientStats extends Component {
               <ButtonTab
                 label="Female"
                 isSelected={sex === "female"}
-                handleClick={() => this.handleClick("female")}
+                handleClick={() => this.handleChange("sex", "female")}
               />
               <ButtonTab
                 label="Male"
                 isSelected={sex === "male"}
-                handleClick={() => this.handleClick("male")}
+                handleClick={() => this.handleChange("sex", "male")}
               />
             </div>
           </div>
@@ -80,28 +74,28 @@ export class PatientStats extends Component {
         <InputRow
           label="Age"
           value={age}
-          handleChange={e => this.handleInputChange("age", e.target.value)}
+          handleChange={e => this.handleChange("age", e.target.value)}
           units="years"
         />
 
         <InputRow
           label="Weight"
           value={weight}
-          handleChange={e => this.handleInputChange("weight", e.target.value)}
+          handleChange={e => this.handleChange("weight", e.target.value)}
           units="kg"
         />
 
         <InputRow
           label="Creatinine"
           value={creatinine}
-          handleChange={e => this.handleInputChange("creatinine", e.target.value)}
+          handleChange={e => this.handleChange("creatinine", e.target.value)}
           units="mg/dL"
         />
 
         <InputRow
           label="Height"
           value={height}
-          handleChange={e => this.handleInputChange("height", e.target.value)}
+          handleChange={e => this.handleChange("height", e.target.value)}
           units="cm"
         />
 
