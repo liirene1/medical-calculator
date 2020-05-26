@@ -1,12 +1,13 @@
 import React, { useState } from "react";
-import { connect } from "react-redux";
+import { useSelector } from "react-redux";
 import ButtonTab from "../ButtonTab";
 import './index.css';
 
-export const ExtraInfo = ({ extraInfo }) => {
+export const ExtraInfo = () => {
+  const { extraInfo } = useSelector(state => ({ extraInfo: state.extraInfo }));
   const [selected, setSelected] = useState(0);
   const { whenToUse, pearlsPitfalls } = extraInfo;
-  if (!whenToUse || !pearlsPitfalls) return null;
+  if (!whenToUse && !pearlsPitfalls) return null;
 
   return (
     <div className="extra-info">
@@ -27,7 +28,6 @@ export const ExtraInfo = ({ extraInfo }) => {
             label="Pearls/Pitfalls"
           />
         }
-
       </div>
 
       <div className={selected === 0 ? 'empty' : 'content'}>
@@ -50,7 +50,3 @@ export const ExtraInfo = ({ extraInfo }) => {
     </div>
   );
 }
-
-const mapStateToProps = state => ({ extraInfo: state.extraInfo });
-
-export default connect(mapStateToProps)(ExtraInfo);

@@ -37,7 +37,6 @@ function rootReducer(state = initialState, action) {
     };
   }
   if (action.type === "AUTOFILL_HEIGHT") {
-    console.log(action);
     return {
       ...state,
       patientInfo: {

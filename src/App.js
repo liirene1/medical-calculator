@@ -1,7 +1,7 @@
 import React from 'react';
-import ExtraInfo from './components/ExtraInfo';
+import { ExtraInfo } from './components/ExtraInfo';
 import PatientStats from './components/PatientStats';
-import Result from './components/Result';
+import { Result } from './components/Result';
 import './App.css';
 
 function App() {

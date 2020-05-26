@@ -1,10 +1,11 @@
 import React from "react";
-import { connect } from "react-redux";
+import { useSelector } from "react-redux";
 import './index.css';
 
-export const Result = ({ result }) => {
+export const Result = () => {
+  const { result } = useSelector(state => ({ result: state.result }));
   const { score, severity } = result;
-  if (!score) return null;
+  if (!result || !score) return null;
 
   return (
     <div className="result">
@@ -13,6 +14,3 @@ export const Result = ({ result }) => {
     </div>
   );
 }
-
-const mapStateToProps = state => ({ result: state.result });
-export default connect(mapStateToProps)(Result);

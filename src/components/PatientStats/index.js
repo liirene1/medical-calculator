@@ -49,7 +49,7 @@ export class PatientStats extends Component {
 
   handleCalculation() {
     const { sex, age, weight, height, creatinine } = this.state;
-    const score = calculate(sex, age, weight, height, creatinine);
+    const score = calculate({sex, age, weight, height, creatinine});
     const severity = determineSeverity(score);
     this.props.updateResult(score, severity);
   }
