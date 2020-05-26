@@ -1,11 +1,11 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from 'redux'
-import ButtonTab from "../ButtonTab";
-import InputRow from "../InputRow";
-import { calculate, determineSeverity } from "../../utils/calculate";
-import { getAgeSex, getWeight, getHeight } from "../../actions/patientStats";
-import { updateResult } from "../../actions/result";
+import ButtonTab from "components/ButtonTab";
+import InputRow from "components/InputRow";
+import { calculate, determineSeverity } from "utils/calculate";
+import { getAgeSex, getWeight, getHeight } from "actions/patientStats";
+import { updateResult } from "actions/result";
 import './index.css';
 
 export class PatientStats extends Component {

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
-import ButtonTab from "../ButtonTab";
+import ButtonTab from "components/ButtonTab";
 import './index.css';
 
 export const ExtraInfo = () => {

@@ -1,5 +1,5 @@
-import urls from "../constants/urls";
-import { calculateAge, parseXML } from "../utils/xml";
+import urls from "constants/urls";
+import { calculateAge, parseXML } from "utils/xml";
 
 export function getAgeSex() {
   return function(dispatch) {
