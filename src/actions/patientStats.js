@@ -1,4 +1,5 @@
 import urls from "constants/urls";
+import * as actionTypes from "constants/actionTypes";
 import { calculateAge, parseXML } from "utils/xml";
 
 export function getAgeSex() {
@@ -14,7 +15,7 @@ export function getAgeSex() {
         age = calculateAge(birthDateObject)
       }
       if (age || sex) {
-        dispatch({ type: "AUTOFILL_AGE_SEX", age, sex });
+        dispatch({ type: actionTypes.AUTOFILL_AGE_SEX, age, sex });
       }
     });
   }
@@ -27,7 +28,7 @@ export function getWeight() {
       .then(text => {
         let weight = parseXML(text, "value");
         if (weight) {
-          dispatch({ type: "AUTOFILL_WEIGHT", weight });
+          dispatch({ type: actionTypes.AUTOFILL_WEIGHT, weight });
         }
       });
   };
@@ -40,7 +41,7 @@ export function getHeight() {
     .then(text => {
       let height = parseXML(text, "value");
       if (height) {
-        dispatch({ type: "AUTOFILL_HEIGHT", height });
+        dispatch({ type: actionTypes.AUTOFILL_HEIGHT, height });
       }
     });
   };

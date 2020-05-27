@@ -1,5 +1,6 @@
 import React from "react";
 import { useSelector } from "react-redux";
+import { resultLabels } from "constants/labels";
 import './index.css';
 
 export const Result = () => {
@@ -9,8 +10,8 @@ export const Result = () => {
 
   return (
     <div className="result">
-      <h1>Result:</h1>
-      <p>Score: { score }, Severity: { severity }</p>
+      <h1>{resultLabels.RESULT}:</h1>
+      <p>{resultLabels.SCORE}: { score }, {resultLabels.SEVERITY}: { severity }</p>
     </div>
   );
 }

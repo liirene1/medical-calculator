@@ -1,4 +1,5 @@
 import extraInfoData from 'constants/extraInfo';
+import * as actionTypes from 'constants/actionTypes';
 
 const initialState = {
   extraInfo: extraInfoData,
@@ -7,7 +8,7 @@ const initialState = {
 };
 
 function rootReducer(state = initialState, action) {
-  if (action.type === "AUTOFILL_AGE_SEX") {
+  if (action.type === actionTypes.AUTOFILL_AGE_SEX) {
     return {
       ...state,
       patientInfo: {
@@ -17,7 +18,7 @@ function rootReducer(state = initialState, action) {
       }
     };
   }
-  if (action.type === "AUTOFILL_WEIGHT") {
+  if (action.type === actionTypes.AUTOFILL_WEIGHT) {
     return {
       ...state,
       patientInfo: {
@@ -26,7 +27,7 @@ function rootReducer(state = initialState, action) {
       }
     };
   }
-  if (action.type === "AUTOFILL_HEIGHT") {
+  if (action.type === actionTypes.AUTOFILL_HEIGHT) {
     return {
       ...state,
       patientInfo: {
@@ -35,7 +36,7 @@ function rootReducer(state = initialState, action) {
       }
     };
   }
-  if (action.type === "UPDATE_RESULT") {
+  if (action.type === actionTypes.UPDATE_RESULT) {
     return {
       ...state,
       result: action.result

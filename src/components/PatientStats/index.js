@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { bindActionCreators } from 'redux'
 import ButtonTab from "components/ButtonTab";
 import InputRow from "components/InputRow";
+import { patientStatsLabels } from "constants/labels";
 import { calculate, determineSeverity } from "utils/calculate";
 import { getAgeSex, getWeight, getHeight } from "actions/patientStats";
 import { updateResult } from "actions/result";
@@ -48,15 +49,13 @@ export class PatientStats extends Component {
     this.props.updateResult(score, severity);
   }
 
-
-
   render() {
     const { sex, age, weight, height, creatinine } = this.state;
     const isDisabled = !sex || !age || !weight || !creatinine || !height;
     return (
       <div className="patient-stats">
         <div className="input-row">
-          <div className="label"> Sex </div>
+          <div className="label"> {patientStatsLabels.SEX} </div>
           <div className="input-wrapper">
             <div className="btn-row">
               <ButtonTab
@@ -74,28 +73,28 @@ export class PatientStats extends Component {
         </div>
 
         <InputRow
-          label="Age"
+          label={patientStatsLabels.AGE}
           value={age}
           handleChange={e => this.handleChange("age", e.target.value)}
           units="years"
         />
 
         <InputRow
-          label="Weight"
+          label={patientStatsLabels.WEIGHT}
           value={weight}
           handleChange={e => this.handleChange("weight", e.target.value)}
           units="kg"
         />
 
         <InputRow
-          label="Creatinine"
+          label={patientStatsLabels.CREATININE}
           value={creatinine}
           handleChange={e => this.handleChange("creatinine", e.target.value)}
           units="mg/dL"
         />
 
         <InputRow
-          label="Height"
+          label={patientStatsLabels.HEIGHT}
           value={height}
           handleChange={e => this.handleChange("height", e.target.value)}
           units="cm"
@@ -106,7 +105,7 @@ export class PatientStats extends Component {
             className={`calculate-btn ${isDisabled ? 'disabled' : ''}`}
             onClick={() => this.handleCalculation()}
           >
-            Calculate
+            {patientStatsLabels.CALCULATE}
           </div>
         </div>
       </div>

@@ -2,16 +2,16 @@ import React from "react";
 import './index.css';
 
 const restrictInput = (e, label) => {
-  let checkIfNum;
+  let checkIfRestrictedChars;
   //keyCodes for "e", "+", "-" allowed by number input type
   const keyCodesToRestrict = [69, 187, 189];
   if (e.keyCode !== undefined) {
     if (label === "Age") {
       keyCodesToRestrict.push(190);
     }
-    checkIfNum = keyCodesToRestrict.includes(e.keyCode);
+    checkIfRestrictedChars = keyCodesToRestrict.includes(e.keyCode);
   }
-  return checkIfNum && e.preventDefault();
+  return checkIfRestrictedChars && e.preventDefault();
 }
 
 const InputRow = ({ label, handleChange, value, units }) => (

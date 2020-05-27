@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import ButtonTab from "components/ButtonTab";
+import { extraInfoLabels } from "constants/labels";
 import './index.css';
 
 export const ExtraInfo = () => {
   const { extraInfo } = useSelector(state => ({ extraInfo: state.extraInfo }));
-  const [selected, setSelected] = useState(0);
+  const [selected, setSelected] = useState('');
   const { whenToUse, pearlsPitfalls } = extraInfo;
   if (!whenToUse && !pearlsPitfalls) return null;
 
@@ -15,24 +16,25 @@ export const ExtraInfo = () => {
         {
           extraInfo.whenToUse &&
           <ButtonTab
-            isSelected={selected === 1}
-            handleClick={() => setSelected(1)}
-            label="When To Use"
+            isSelected={selected === extraInfoLabels.WHEN_TO_USE}
+            handleClick={() => setSelected(extraInfoLabels.WHEN_TO_USE)}
+            label={extraInfoLabels.WHEN_TO_USE}
           />
         }
         {
           extraInfo.pearlsPitfalls &&
           <ButtonTab
-            isSelected={selected === 2}
-            handleClick={() => setSelected(2)}
-            label="Pearls/Pitfalls"
+            isSelected={selected === extraInfoLabels.PEARLS_PITFALLS}
+            handleClick={() => setSelected(extraInfoLabels.PEARLS_PITFALLS)}
+            label={extraInfoLabels.PEARLS_PITFALLS}
           />
         }
       </div>
 
-      <div className={selected === 0 ? 'empty' : 'content'}>
+      <div className={selected === '' ? 'empty' : 'content'}>
         {
-          selected === 1 && extraInfo.whenToUse &&
+          selected === extraInfoLabels.WHEN_TO_USE &&
+          extraInfo.whenToUse &&
           <ul>
             {extraInfo.whenToUse.map((condition, index) =>
               <li key={index}> {condition} </li>
@@ -40,7 +42,8 @@ export const ExtraInfo = () => {
           </ul>
         }
         {
-          selected === 2 && extraInfo.pearlsPitfalls &&
+          selected === extraInfoLabels.PEARLS_PITFALLS &&
+          extraInfo.pearlsPitfalls &&
           <div>
             <div className="title"> {extraInfo.pearlsPitfalls.title} </div>
             <div> {extraInfo.pearlsPitfalls.text} </div>
