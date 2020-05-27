@@ -24,13 +24,13 @@ export function getAgeSex() {
 export function getWeight() {
   return function(dispatch) {
     return fetch(urls.WEIGHT_URL)
-      .then(response => response.text())
-      .then(text => {
-        let weight = parseXML(text, "value");
-        if (weight) {
-          dispatch({ type: actionTypes.AUTOFILL_WEIGHT, weight });
-        }
-      });
+    .then(response => response.text())
+    .then(text => {
+      let weight = parseXML(text, "value");
+      if (weight) {
+        dispatch({ type: actionTypes.AUTOFILL_WEIGHT, weight });
+      }
+    });
   };
 }
 

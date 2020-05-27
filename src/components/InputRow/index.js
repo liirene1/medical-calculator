@@ -7,7 +7,7 @@ const restrictInput = (e, label) => {
   const keyCodesToRestrict = [69, 187, 189];
   if (e.keyCode !== undefined) {
     if (label === "Age") {
-      keyCodesToRestrict.push(190);
+      keyCodesToRestrict.push(190); //"."
     }
     checkIfRestrictedChars = keyCodesToRestrict.includes(e.keyCode);
   }
@@ -21,7 +21,6 @@ const InputRow = ({ label, handleChange, value, units }) => (
       <div className="input-group">
         <input
           type="number"
-          pattern="\d+"
           value={value}
           onChange={handleChange}
           onKeyDown={e => restrictInput(e, label)}
