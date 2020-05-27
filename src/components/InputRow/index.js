@@ -1,6 +1,19 @@
 import React from "react";
 import './index.css';
 
+const restrictInput = (e, label) => {
+  let checkIfNum;
+  //keyCodes for "e", "+", "-" allowed by number input type
+  const keyCodesToRestrict = [69, 187, 189];
+  if (e.keyCode !== undefined) {
+    if (label === "Age") {
+      keyCodesToRestrict.push(190);
+    }
+    checkIfNum = keyCodesToRestrict.includes(e.keyCode);
+  }
+  return checkIfNum && e.preventDefault();
+}
+
 const InputRow = ({ label, handleChange, value, units }) => (
   <div className="input-row">
     <div className="label"> {label} </div>
@@ -8,8 +21,10 @@ const InputRow = ({ label, handleChange, value, units }) => (
       <div className="input-group">
         <input
           type="number"
+          pattern="\d+"
           value={value}
           onChange={handleChange}
+          onKeyDown={e => restrictInput(e, label)}
         />
         <div className="units"> {units} </div>
       </div>

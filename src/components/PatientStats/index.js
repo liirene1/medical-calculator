@@ -48,6 +48,8 @@ export class PatientStats extends Component {
     this.props.updateResult(score, severity);
   }
 
+
+
   render() {
     const { sex, age, weight, height, creatinine } = this.state;
     const isDisabled = !sex || !age || !weight || !creatinine || !height;
